@@ -1,0 +1,241 @@
+@font-face {
+    font-family: bebasneue;
+    src: url(./fonts/BebasNeue-Regular.ttf);
+}
+
+@font-face {
+    font-family: ubuntu;
+    src: url(./fonts/Ubuntu-Regular.ttf);
+}
+
+@font-face {
+    font-family: roboto;
+    src: url(./fonts/RobotoCondensed-Regular.ttf);
+}
+
+@keyframes fadeOut {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+a:visited {
+    text-decoration: none; 
+}
+
+a {
+    text-decoration: none;
+    color: #7fb1ce;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: bebasneue;
+    scroll-behavior: smooth;
+    animation: fadeOut 1s ease-in-out;
+    overflow-x: hidden;
+}
+
+.navigation-burger {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    background: black;
+    padding: 0 20px;
+    z-index: 1000;
+}
+
+.navigation__home {
+    color: #3182b5;
+    font-size: 50px;
+    text-decoration: none;
+}
+
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 35px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.burger-menu span {
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    transition: 0.3s ease;
+    border-radius: 2px;
+}
+
+.navigation-burger__menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.navigation-burger__menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    background: black;
+    padding: 0 20px;
+    z-index: 999;
+    border-bottom: solid #38393c 1px;
+}
+
+.navigation__home {
+    color: #3182b5;
+    font-size: 50px;
+    text-decoration: none;
+    margin-left: 10%;
+}
+
+.navigation__home__ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 40px;
+    margin-right: 10%;
+}
+
+.navigation__home__ul a {
+    text-decoration: none;
+    font-size: 20px;
+    transition: color 0.5s ease, transform 0.5s ease;
+}
+
+.navigation__home__ul img {
+    vertical-align: middle;
+}
+
+.list1:hover, .list3:hover, .list4:hover, .list5:hover {
+    color: #aee0ff;
+}
+
+.list2 {
+    color: #ffffff;
+}
+
+.text {
+    width: 100%;
+    margin-top: 150px;
+    margin-bottom: 50px;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 100px;
+    line-height: 75px;
+    color: #00578d;
+}
+
+section{
+    text-align: center;
+    color: #959596;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 150px;
+    margin-top: 50px;
+}
+
+.column {
+    width: 300px;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+}
+
+.testimonials {
+    display: flex;
+    justify-content: center;
+    gap: 90px;
+    margin-top: 50px;
+}
+
+.testimonial {
+    width: 250px;
+}
+
+.testimonial img {
+    width: 30px;
+}
+
+.con {
+    font-family: roboto; 
+    margin: auto;
+    width: 800px;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    color: rgb(83, 83, 83);
+}
+
+.con__button{
+    background-color: #215779;
+    color: #6ab1ce;
+    width: 300px;
+    margin: 70px;
+    font-size: 25px;
+    padding: 5px 1px;
+    border: none;
+    font-family: bebasneue; 
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.5s ease, transform 0.5s ease;
+}
+
+.con__button:hover {
+    background-color: #00304e;
+    color: #a9e7ff;
+}
+
+.footer {
+    font-family: roboto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-top: 408px;
+  }
+  
+  .footer-left a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  .footer-right img {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
