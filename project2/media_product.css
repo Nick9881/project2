@@ -16,7 +16,7 @@
         display: flex;
         width: 40px;
         height: 30px;
-        left: 290px;
+        right: 10%;
         top: 18px;
     }
 
@@ -68,22 +68,20 @@
 
     .product_container {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(1, 1fr); 
         gap: 20px;
         width: 80%;
         margin: 0 auto; 
     }
 
     .some img {
-        max-width: 100%;
-        height: 100px;
         object-fit: cover;
         border-radius: 8px;
         margin-bottom: 15px;
     }
 }
 
-@media (width: 1024px) {
+@media (max-width: 1024px) {
     /* iPad Pro */
     .navigation__home__ul {
         display: none;
@@ -151,3 +149,14 @@
         flex-direction: column;
     }
 }
+
+@media (min-width: 1025px) {
+    .product_container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 20px;
+        width: 80%;
+        margin: 0 auto; 
+    }
+}
+

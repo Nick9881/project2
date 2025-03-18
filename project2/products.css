@@ -34,10 +34,13 @@ a {
 body, html {
     margin: 0;
     padding: 0;
+    height: 100%;
     font-family: bebasneue, sans-serif;
     scroll-behavior: smooth;
-    animation: fadeOut 1s ease-in-out;
+    animation: fadeIn 1s ease-in-out;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .navigation-burger {
@@ -148,6 +151,10 @@ body, html {
     color: rgb(83, 83, 83);
 }
 
+footer{
+    margin-top: auto;
+}
+
 .footer {
     font-family: roboto;
     display: flex;
@@ -185,7 +192,7 @@ body, html {
 
 .product_container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(2, 1fr); 
     gap: 20px;
     width: 60%;
     margin: 0 auto; 

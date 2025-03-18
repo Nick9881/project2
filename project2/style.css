@@ -1,16 +1,19 @@
 @font-face {
     font-family: bebasneue;
     src: url(./fonts/BebasNeue-Regular.ttf);
+    font-display: swap;
 }
 
 @font-face {
     font-family: ubuntu;
     src: url(./fonts/Ubuntu-Regular.ttf);
+    font-display: swap;
 }
 
 @font-face {
     font-family: roboto;
     src: url(./fonts/RobotoCondensed-Regular.ttf);
+    font-display: swap;
 }
 
 @keyframes fadeOut {
