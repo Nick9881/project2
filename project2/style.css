@@ -37,10 +37,13 @@ a {
 body, html {
     margin: 0;
     padding: 0;
+    height: 100%;
     font-family: bebasneue, sans-serif;
     scroll-behavior: smooth;
-    animation: fadeOut 1s ease-in-out;
+    animation: fadeIn 1s ease-in-out;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .black-background__cont__h1 {
