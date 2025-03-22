@@ -37,13 +37,10 @@ a {
 body, html {
     margin: 0;
     padding: 0;
-    height: 100%;
     font-family: bebasneue, sans-serif;
     scroll-behavior: smooth;
-    animation: fadeIn 1s ease-in-out;
+    animation: fadeOut 1s ease-in-out;
     overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
 }
 
 .black-background__cont__h1 {
@@ -96,7 +93,7 @@ body, html {
 .navigation-burger__menu a {
     color: white;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 50px;
 }
 
 .navigation {

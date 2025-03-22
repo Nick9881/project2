@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronics Store Website</title>
+    <link rel="stylesheet" href="./order_product.css">
+    <link rel="stylesheet" href="./media_order_product.css">
+    <script src="./order_product.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navigation">
+            <a href="./index.html" class="navigation__home">AMBITS</a>
+            <nav class="navigation-burger">
+                <div class="burger-menu" id="burgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="navigation-burger__menu" id="navMenu">
+                    <li><a href="./index.html">HOME</a></li>
+                    <li><a href="./about.html">ABOUT US</a></li>
+                    <li><a href="./products.html">PRODUCTS</a></li>
+                    <li><a href="#">LOG IN</a></li>
+                    <li><a href="./cart.html">CART</a></li>
+                </ul>
+            </nav>
+            <ul class="navigation__home__ul">
+                <li><a href="./index.html" class="list1">HOME</a></li>
+                <li><a href="./about.html" class="list2">ABOUT US</a></li>
+                <li><a href="./products.html" class="list3">PRODUCTS</a></li>
+                <li>
+                    <a href="#" class="list4"><img src="./icons/user.png" width="26" height="26" alt="User"></a>
+                    <a href="#" class="list5">LOG IN</a>
+                </li>
+                <li>
+                    <a href="./cart.html" class="cart"><img src="./icons/cart.png" alt="cart" width="32" height="32"></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="white-background">
+        <div class="container">
+            <h1 class="title">PRODUCT INFORMATION</h1>
+            <div id="productSummary">
+                <div class="product-container" id="productContainer">
+                </div>
+            </div>
+            <div class="info">
+                <p class="md">Delivery method</p>
+                <div class="geolocation">
+                    <img class="geolocation__img" src="./icons/geo.png" alt="geolocation__img">
+                    <p class="geolocation__text">Location: 34/34b Alexander Kazbegi Ave, Tbilisi</p>
+                </div>
+                
+                <div class="shipping-method">
+                    <p><strong>Shipping Price:</strong> FREE</p>
+                    <p><strong>Estimated Delivery:</strong> 3-5 business days</p>
+                </div>
+                <div class="payment-method">
+                    <p><strong>Payment Method:</strong> Credit Card, PayPal, Cash on Delivery</p>
+                </div>
+                <div class="tracking">
+                    <p><strong>Track your Order:</strong> <a href="#">Click here to track</a></p>
+                </div>
+                <div class="change-address">
+                    <button class="change-address-btn">Change Delivery Address</button>
+                </div>
+                <div class="return-policy">
+                    <p><a href="#">Return & Exchange Policy</a></p>
+                </div>
+                <div class="payment-icons">
+                    <img src="./icons/paypal.jpg" alt="PayPal" class="payment-icon">
+                    <img src="./icons/master-card.png" alt="MasterCard" class="payment-icon">
+                    <img src="./icons/visa.png" alt="Visa" class="payment-icon">
+                    <img src="./icons/creditcard.png" alt="Card" class="payment-icon">
+                </div>
+                <div class="guarantee-card">
+                    <p class="guarantee-text">Return Guarantee</p>
+                    <div class="guarantee-details">
+                        <p><strong>Conditions for Return:</strong></p>
+                        <ul>
+                            <li>Returns are accepted within <strong>30 days</strong> of purchase.</li>
+                            <li>The product must be in its original, unused condition, including all tags and packaging.</li>
+                            <li>Items must be returned with a valid proof of purchase, such as a receipt or order confirmation.</li>
+                            <li>Personalized or custom items are non-returnable.</li>
+                            <li>Shipping fees for returns are the responsibility of the customer, unless the return is due to a defective or incorrect item.</li>
+                        </ul>
+                        <p><strong>How to Request a Return:</strong></p>
+                        <ul>
+                            <li>Contact our customer support at <strong>support@example.com</strong> to initiate the return process.</li>
+                            <li>Provide your order number, the product(s) being returned, and a reason for the return.</li>
+                            <li>Once the return is approved, you will receive instructions on how to send the item back.</li>
+                        </ul>
+                        <p><strong>Refund Process:</strong></p>
+                        <ul>
+                            <li>Refunds will be issued to the original method of payment once the return is received and inspected.</li>
+                            <li>Refunds may take up to <strong>7 business days</strong> to process after approval.</li>
+                            <li>We reserve the right to deny a refund if the product does not meet our return conditions.</li>
+                        </ul>
+                        <p><strong>Important Notes:</strong></p>
+                        <ul>
+                            <li>Items returned after the <strong>30-day period</strong> will not be eligible for a refund.</li>
+                            <li>If the item is returned damaged or used, a partial refund may be issued depending on the condition of the product.</li>
+                        </ul>
+                        <p><strong>We strive to ensure your satisfaction. If you have any questions or concerns, please don’t hesitate to contact us!</strong></p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <div class="fixed-footer">
+            <span class="total-price">Total Price: $<span id="totalAmount">0.00</span></span>
+            <button class="checkout-btn">Confirm</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -8,28 +8,95 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-//cart load
+const apiUrl = 'https://67deb105471aaaa742854d38.mockapi.io/PP/PostInfo';
+
 window.onload = function () {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartItemsContainer = document.getElementById('cartItemsContainer');
     const totalAmountContainer = document.getElementById('totalAmount');
-    const cartCountContainer = document.getElementById('cartCount');
 
-    function updateTotalAmount() {
-        let total = 0;
-        cart.forEach(item => {
-            total += item.price * item.quantity;
-        });
-        totalAmountContainer.textContent = total.toFixed(2);
+    let cart = [];
+
+    function fetchCart() {
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load cart data');
+                }
+                return response.json();
+            })
+            .then(data => {
+                cart = data;
+                renderCartItems();
+            })
+            .catch(error => {
+                console.error('Error fetching cart:', error);
+            });
     }
 
-    function updateCartCount() {
-        let totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-        cartCountContainer.textContent = totalCount;
+    function updateCartOnServer(cartItem) {
+        fetch(`${apiUrl}/${cartItem.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cartItem)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to update cart on server');
+            }
+            return response.json();
+        })
+        .then(updatedItem => {
+            const index = cart.findIndex(item => item.id === updatedItem.id);
+            if (index !== -1) {
+                cart[index] = updatedItem;
+            }
+            renderCartItems();
+        })
+        .catch(error => {
+            console.error('Error updating cart:', error);
+        });
+    }
+
+    function removeItemFromCart(productId) {
+        const productToRemove = cart.find(item => item.id === productId);
+        if (productToRemove) {
+            if (productToRemove.quantity > 1) {
+                productToRemove.quantity -= 1;
+                updateCartOnServer(productToRemove);
+            } else {
+                // Если количество 1, то удаляем товар полностью с сервера
+                fetch(`${apiUrl}/${productId}`, {
+                    method: 'DELETE',
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to remove item from server');
+                    }
+                    // Удаляем товар из локальной корзины
+                    cart = cart.filter(item => item.id !== productId);
+                    renderCartItems();
+                })
+                .catch(error => {
+                    console.error('Error deleting item:', error);
+                });
+            }
+        }
+    }
+
+    function addItemToCart(productId) {
+        const productToAdd = cart.find(item => item.id === productId);
+        if (productToAdd) {
+            productToAdd.quantity += 1;
+            updateCartOnServer(productToAdd);
+        }
     }
 
     function renderCartItems() {
         cartItemsContainer.innerHTML = '';
+        let totalAmount = 0;
+
         cart.forEach(product => {
             const itemDiv = document.createElement('div');
             itemDiv.classList.add('cart-item');
@@ -41,6 +108,7 @@ window.onload = function () {
                 <button class="remove-item" data-id="${product.id}">Remove</button>
                 <button class="add-item" data-id="${product.id}">Add</button>
             `;
+
             const removeBtn = itemDiv.querySelector('.remove-item');
             removeBtn.addEventListener('click', function () {
                 removeItemFromCart(product.id);
@@ -52,35 +120,12 @@ window.onload = function () {
             });
 
             cartItemsContainer.appendChild(itemDiv);
+            totalAmount += product.price * product.quantity;
         });
-        updateTotalAmount();
-        updateCartCount();
+
+        totalAmountContainer.textContent = totalAmount.toFixed(2);
     }
 
-    function removeItemFromCart(itemId) {
-        let itemIndex = cart.findIndex(item => item.id === itemId);
-        if (itemIndex !== -1) {
-            if (cart[itemIndex].quantity > 1) {
-                cart[itemIndex].quantity -= 1;
-            } else {
-                cart.splice(itemIndex, 1);
-            }
-            localStorage.setItem('cart', JSON.stringify(cart));
-            renderCartItems();
-        }
-    }
-
-    function addItemToCart(itemId) {
-        let itemIndex = cart.findIndex(item => item.id === itemId);
-        if (itemIndex !== -1) {
-            cart[itemIndex].quantity += 1;
-        } else {
-            let product = { id: itemId, quantity: 1, image: "default.jpg", price: 0 };
-            cart.push(product);
-        }
-        localStorage.setItem('cart', JSON.stringify(cart));
-        renderCartItems();
-    }
-
-    renderCartItems();
+    fetchCart();
 };
+

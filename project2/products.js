@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-//popup
 fetch('https://67d294b090e0670699be2f8a.mockapi.io/ecw/products')
     .then(response => {
         if (!response.ok) {
@@ -47,7 +46,7 @@ fetch('https://67d294b090e0670699be2f8a.mockapi.io/ecw/products')
                 popupImg.alt = product.name;
                 popupName.textContent = product.name;
                 popupPrice.textContent = `Price: ${product.price}$`;
-                popupDescription.textContent = product.discription || "No discription available";
+                popupDescription.textContent = product.discription || "No description available";
                 quantity = 1;
                 quantityElement.textContent = quantity;
                 popup.style.display = "flex";
@@ -81,25 +80,83 @@ fetch('https://67d294b090e0670699be2f8a.mockapi.io/ecw/products')
         addToCartBtn.addEventListener('click', () => {
             if (!selectedProduct) return;
 
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let existingItem = cart.find(item => item.id === selectedProduct.id);
+            // Check if the product already exists in the cart
+            fetch('https://67deb105471aaaa742854d38.mockapi.io/PP/PostInfo')
+                .then(response => response.json())
+                .then(cartItems => {
+                    const existingItem = cartItems.find(item => item.id === selectedProduct.id);
 
-            if (existingItem) {
-                existingItem.quantity += quantity;
-            } else {
-                cart.push({ ...selectedProduct, quantity });
-            }
-            localStorage.setItem('cart', JSON.stringify(cart));
-            popup.style.display = "none";
-            showAddedToCartMessage();
+                    if (existingItem) {
+                        // If item already exists in the cart, increase the quantity
+                        existingItem.quantity += quantity;
+
+                        // Update the cart item on the server
+                        fetch(`https://67deb105471aaaa742854d38.mockapi.io/PP/PostInfo/${existingItem.id}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(existingItem)
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error("Error updating product in cart");
+                            }
+                            return response.json();
+                        })
+                        .then(() => {
+                            popup.style.display = "none";
+                            showAddedToCartMessage();
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert("There was an error while updating the cart.");
+                        });
+                    } else {
+                        // If item doesn't exist in the cart, add it
+                        const cartData = {
+                            id: selectedProduct.id,
+                            name: selectedProduct.name,
+                            price: selectedProduct.price,
+                            quantity: quantity,
+                            image: selectedProduct.image
+                        };
+
+                        fetch('https://67deb105471aaaa742854d38.mockapi.io/PP/PostInfo', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(cartData)
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error("Error adding product to cart");
+                            }
+                            return response.json();
+                        })
+                        .then(() => {
+                            popup.style.display = "none";
+                            showAddedToCartMessage();
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert("There was an error while adding to the cart.");
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error("Error checking cart:", error);
+                    alert("There was an error while checking the cart.");
+                });
         });
     })
     .catch(error => {
         console.error("ERROR", error);
     });
-    
-//add to cart massage
-    function showAddedToCartMessage() {
+
+// add to cart message
+function showAddedToCartMessage() {
     const message = document.createElement('div');
     message.style.position = 'fixed';
     message.style.bottom = '20px';

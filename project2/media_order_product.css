@@ -1,12 +1,3 @@
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
 @media (max-width: 768px) {
     /* iPhone 12 Pro */
     .navigation__home__ul {
@@ -42,22 +33,18 @@
         left: 0;
         width: 100%;
         height: 100vh;
-        background: rgba(0, 0, 0, 0.8);
+        background: rgb(0, 0, 0, 0.8);
         padding: 40px 20px;
         text-align: center;
         z-index: 1000;
         justify-content: center;
         opacity: 0;
         transition: opacity 0.3s ease-in-out;
-        pointer-events: none;
-        backdrop-filter: blur(5px);
     }
 
     .navigation-burger__menu.active {
         display: flex;
         opacity: 1;
-        pointer-events: all;
-        animation: fadeIn 0.3s ease-in-out;
     }
 
     .burger-menu.active span:nth-child(1) {
@@ -74,38 +61,19 @@
 
     .navigation__home {
         color: #3182b5;
-        font-size: 40px; 
+        font-size: 50px;
         text-decoration: none;
+        font-size: 40px;
         padding: 0px;
+        margin-right: 300px;
     }
 
-    .container {
-        flex-direction: column;
-        margin: auto;
-        gap: 70px;
-    }
-
-    .testimonials {
-        flex-direction: column;
-        margin: auto;
-        align-items: center;
-        margin-top: 50px;
-        gap: 50px;
-    }
-
-    .con {
-        width: 80%;
-    }
-
-    .con__button {
-        margin: 0px;
-        margin-bottom: 60px;
-        margin-top: 60px;
+    .guarantee-card{
+        width: auto;
     }
 }
 
-
-@media (width: 1024px) {
+@media (max-width: 1024px) {
     /* iPad Pro */
     .navigation__home__ul {
         display: none;
@@ -123,7 +91,7 @@
         display: flex;
         width: 40px;
         height: 30px;
-        left: 800px;
+        right: 10%;
         top: 18px;
     }
 
@@ -169,10 +137,5 @@
     .footer-left a {
         font-size: 17px;
     }
-    .con{
-        height: 540px;
-    }
-    .testimonials{
-        padding-top: 100px;
-    }
 }
+
